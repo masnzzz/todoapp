@@ -40,6 +40,7 @@ class TaskController extends Controller
     }
 
 
+
     public function create(int $id, CreateTask $request)
     {
         $current_folder = Folder::find($id);
@@ -57,6 +58,7 @@ class TaskController extends Controller
     }
 
 
+
     public function showEditForm(int $id, int $task_id)
     {
         $task = Task::find($task_id);
@@ -66,6 +68,8 @@ class TaskController extends Controller
         ]);
     }
 
+
+    
     public function edit(int $id, int $task_id, EditTask $request)
     {
         // リクエストされた ID でタスクデータを取得
