@@ -20,7 +20,6 @@ class TaskController extends Controller
         $current_folder = Folder::find($id);
 
         // 選ばれたフォルダに紐づくタスクを取得する
-        // $tasks = Task::where('folder_id', $current_folder->id)->get();
         $tasks = $current_folder->tasks()->get();
 
         return view('tasks/index', [
@@ -82,6 +81,18 @@ class TaskController extends Controller
         $task->save();
 
         // 編集対象のタスクが属するタスク一覧画面へリダイレクト
+        return redirect()->route('tasks.index', [
+            'id' => $task->folder_id,
+        ]);
+    }
+
+
+
+    public function delete(int $id, int $task_id)
+    {
+        $task = Task::find($task_id);
+        $task->delete();
+
         return redirect()->route('tasks.index', [
             'id' => $task->folder_id,
         ]);
